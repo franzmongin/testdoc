@@ -6,18 +6,20 @@ export default function App() {
     const [persons, setPersons] = useState([]);
     const [value, setValue] = useState('');
     const getPersons = async () => {
-        fetch("https://jsonplaceholder.typicode.com/users")
+        fetch("http://localhost:8000/api/people")
         .then(res => {
             return res.json();
         })
         .then( data => {
-            setPersons(data);
+            console.log(data);
+            console.log(data['hydra:member']);
+            setPersons(data['hydra:member']);
         })
         
     }
     const handleDelete = (id) => {
         const newPersons = persons.filter(person => person.id !== id)
-        setPersons(newPersons)
+        setPersons(newPersons)  
     }
     const handleChange = (e) => {
         e.preventDefault();
@@ -26,16 +28,11 @@ export default function App() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('submitted')
-        setPersons([...persons, {id: 10}])
+        setPersons([...persons, {id: Date.now()}])
     }
     useEffect(() => {
         getPersons();
-        console.log(value);
     }, []);
-    useEffect(() => {
-        console.log(value);
-    }, [value]);
-    
     
     return (
         <div className="container source">
