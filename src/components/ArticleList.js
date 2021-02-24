@@ -19,9 +19,12 @@ export default function ArticleList() {
   const [products, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const fetchProducts = async () => {
-    const response = await fetch("http://localhost:8000/api/products");
+    const response = await fetch("http://localhost:8000/api/products", {
+      method: "get",
+      headers: { Accept: "application/json" },
+    });
     const products = await response.json();
-    return products["hydra:member"];
+    return products;
   };
   useEffect(() => {
     fetchProducts().then((products) => {
@@ -39,7 +42,11 @@ export default function ArticleList() {
           products.map((product) => {
             return (
               <Grid item xs={3} key={product.id}>
-                <ArticleCard product={product} />
+                <ArticleCard
+                  product={product}
+                  setProducts={setProducts}
+                  products={products}
+                />
               </Grid>
             );
           })}
