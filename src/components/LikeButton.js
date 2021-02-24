@@ -7,13 +7,14 @@ function LikeButton({ id, isLiked, setProducts, products }) {
     (product) => product.id === id
   );
   const updateProduct = async () => {
-    await fetch(`http://localhost:8000/api/products/${id}`, {
+    const response = await fetch(`http://localhost:8000/api/products/${id}`, {
       method: "patch",
       headers: { "Content-type": "application/merge-patch+json" },
       body: JSON.stringify({ isLiked: !isActive }),
     });
+    return await response.json();
   };
-  const handleClick = (id) => {
+  const handleClick = () => {
     updateProduct();
     var newArray = [...products];
     newArray[currentProductIndex][isLiked] = !isActive;
@@ -23,7 +24,7 @@ function LikeButton({ id, isLiked, setProducts, products }) {
   return (
     <>
       <FavoriteIcon
-        onClick={() => handleClick(id)}
+        onClick={() => handleClick()}
         color={isActive ? "primary" : "disabled"}
       />
     </>

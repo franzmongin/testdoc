@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import ArticleCard from "./ArticleCard";
+import Article from "./Article";
 import Loader from "./Loader";
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +42,7 @@ export default function ArticleList() {
           products.map((product) => {
             return (
               <Grid item xs={3} key={product.id}>
-                <ArticleCard
+                <Article
                   product={product}
                   setProducts={setProducts}
                   products={products}
