@@ -7,12 +7,16 @@ function LikeButton({ id, isLiked, setProducts, products }) {
     (product) => product.id === id
   );
   const updateProduct = async () => {
+    try{
     const response = await fetch(`http://localhost:8000/api/products/${id}`, {
-      method: "patch",
+      method: "PATCH",
       headers: { "Content-type": "application/merge-patch+json" },
       body: JSON.stringify({ isLiked: !isActive }),
     });
     return await response.json();
+  }catch (err) {
+    console.log(err);
+  }
   };
   const handleClick = () => {
     updateProduct();

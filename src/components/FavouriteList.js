@@ -43,6 +43,7 @@ export default function FavouriteList() {
       <Grid container spacing={3}>
         {products &&
           products.map((product) => {
+            if(product.isLiked === true){
             return (
               <Grid item xs={3} key={product.id}>
                 <Article
@@ -52,6 +53,10 @@ export default function FavouriteList() {
                 />
               </Grid>
             );
+          }
+          else{
+            return '';
+          }
           })}
       </Grid>
     </div>
