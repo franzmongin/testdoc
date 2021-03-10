@@ -34,7 +34,7 @@ export default function FavouriteList() {
       setProducts(products);
       setIsLoading(false);
     });
-  }, [products]);
+  }, []);
   const classes = useStyles();
 
   return (
