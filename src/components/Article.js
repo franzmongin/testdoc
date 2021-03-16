@@ -63,7 +63,7 @@ export default function Article({ product, setProducts, products }) {
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
+        image="https://picsum.photos/200"
         title="Paella dish"
       />
       <CardContent>
