@@ -3,9 +3,6 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 
 function LikeButton({ id, isLiked, setProducts, products }) {
   const [isActive, setisActive] = useState(isLiked);
-  const currentProductIndex = products.findIndex(
-    (product) => product.id === id
-  );
   const updateProduct = async () => {
     try{
     const response = await fetch(`http://localhost:8000/api/products/${id}`, {
@@ -20,9 +17,13 @@ function LikeButton({ id, isLiked, setProducts, products }) {
   };
   const handleClick = () => {
     updateProduct();
-    var newArray = [...products];
-    newArray[currentProductIndex][isLiked] = !isActive;
-    setProducts(newArray);
+    setProducts(prev => prev.map(product => {
+        if(product.id === id ){
+          return {...product, isLiked: !isActive};
+        }
+          return product;
+      
+    }));
     setisActive(!isActive);
   };
   return (
