@@ -20,7 +20,7 @@ export default function FavouriteList() {
   const [isLoading, setIsLoading] = useState(true);
   const fetchFavourite = async () => {
     const response = await fetch(
-      "http://localhost:8000/api/products?isLiked=1",
+      "http://localhost:3000/products?isLiked=true",
       {
         method: "get",
         headers: { Accept: "application/json" },
@@ -43,20 +43,19 @@ export default function FavouriteList() {
       <Grid container spacing={3}>
         {products &&
           products.map((product) => {
-            if(product.isLiked === true){
-            return (
-              <Grid item xs={3} key={product.id}>
-                <Article
-                  product={product}
-                  setProducts={setProducts}
-                  products={products}
-                />
-              </Grid>
-            );
-          }
-          else{
-            return '';
-          }
+            if (product.isLiked === true) {
+              return (
+                <Grid item xs={3} key={product.id}>
+                  <Article
+                    product={product}
+                    setProducts={setProducts}
+                    products={products}
+                  />
+                </Grid>
+              );
+            } else {
+              return "";
+            }
           })}
       </Grid>
     </div>

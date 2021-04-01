@@ -19,7 +19,7 @@ export default function ArticleList() {
   const [products, setProducts] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const fetchProducts = async () => {
-    const response = await fetch("http://localhost:8000/api/products", {
+    const response = await fetch("http://localhost:3000/products", {
       method: "get",
       headers: { Accept: "application/json" },
     });
